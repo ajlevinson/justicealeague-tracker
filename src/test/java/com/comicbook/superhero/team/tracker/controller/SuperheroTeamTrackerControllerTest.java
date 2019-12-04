@@ -1,9 +1,10 @@
-package com.justiceleague.justiceleaguetracker.controller;
+package com.comicbook.superhero.team.tracker.controller;
 
+import com.comicbook.superhero.team.tracker.dto.SuperHero;
+import com.comicbook.superhero.team.tracker.enums.Publisher;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.justiceleague.justiceleaguetracker.JusticeLeagueTrackerApplication;
-import com.justiceleague.justiceleaguetracker.dto.SuperHero;
+import com.comicbook.superhero.team.tracker.SuperheroTeamTrackerApplication;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +25,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-@ContextConfiguration(classes = {JusticeLeagueTrackerApplication.class})
+@ContextConfiguration(classes = {SuperheroTeamTrackerApplication.class})
 @ActiveProfiles("test")
-public class JusticeLeagueTrackerControllerTest {
+public class SuperheroTeamTrackerControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -34,7 +35,7 @@ public class JusticeLeagueTrackerControllerTest {
 
     @Test
     public void shouldGetJusticeLeague() throws Exception {
-        String response = mockMvc.perform(get("/v1/jl")).andExpect(status().isOk()).andReturn().
+        String response = mockMvc.perform(get("/v1/justiceleague")).andExpect(status().isOk()).andReturn().
                 getResponse().getContentAsString();
         List<SuperHero> actual = new ObjectMapper().readValue(response, new TypeReference<List<SuperHero>>() {
         });
@@ -45,11 +46,11 @@ public class JusticeLeagueTrackerControllerTest {
 
     private List<SuperHero> getJusticeLeague() {
         SuperHero superMan = new SuperHero("Clark Kent", Arrays.asList("Flight", "Super human strength",
-                "X-ray vision"), "Metropolis");
+                "X-ray vision"), "Metropolis", Publisher.DC.getName());
         SuperHero flash = new SuperHero("Barry Allen", Arrays.asList("Super speed",
-                "Tapping into the speed force", "Time travel"), "Central city");
+                "Tapping into the speed force", "Time travel"), "Central city", Publisher.DC.getName());
         SuperHero batman = new SuperHero("Bruce Wayne", Arrays.asList("Super rich", "Cool Gadgets"),
-                "Gotham");
+                "Gotham", Publisher.DC.getName());
         return Arrays.asList(superMan, flash, batman);
     }
 }

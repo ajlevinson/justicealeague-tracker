@@ -1,6 +1,7 @@
-package com.justiceleague.justiceleaguetracker.service;
+package com.comicbook.superhero.team.tracker.service;
 
-import com.justiceleague.justiceleaguetracker.dto.SuperHero;
+import com.comicbook.superhero.team.tracker.dto.SuperHero;
+import com.comicbook.superhero.team.tracker.enums.Publisher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -9,14 +10,14 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * This class provides the functionality for the justice league tracker.
+ * This class provides the functionality for the superhero team tracker.
  *
  * @author dinuka
  */
 @Service
-public class JusticeLeagueServiceImpl implements JusticeLeagueService {
+public class SuperheroTeamServiceImpl implements SuperheroTeamService {
 
-    private static Logger log = LoggerFactory.getLogger(JusticeLeagueService.class);
+    private static Logger log = LoggerFactory.getLogger(SuperheroTeamService.class);
 
     @Override
     public List<SuperHero> getJusticeLeague() {
@@ -26,11 +27,15 @@ public class JusticeLeagueServiceImpl implements JusticeLeagueService {
 
     private List<SuperHero> populateJusticeLeague() {
         SuperHero superMan = new SuperHero("Clark Kent", Arrays.asList("Flight", "Super human strength",
-                "X-ray vision"), "Metropolis");
+                "X-ray vision"), "Metropolis", Publisher.DC.getName());
         SuperHero flash = new SuperHero("Barry Allen", Arrays.asList("Super speed",
-                "Tapping into the speed force", "Time travel"), "Central city");
+                "Tapping into the speed force", "Time travel"), "Central city", Publisher.DC.getName());
         SuperHero batman = new SuperHero("Bruce Wayne", Arrays.asList("Super rich", "Cool Gadgets"),
-                "Gotham");
+                "Gotham", Publisher.DC.getName());
         return Arrays.asList(superMan, flash, batman);
+    }
+
+    public List<SuperHero> avengersAssemble() {
+        return null;
     }
 }

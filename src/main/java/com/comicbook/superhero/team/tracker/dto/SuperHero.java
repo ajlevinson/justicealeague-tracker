@@ -1,4 +1,4 @@
-package com.justiceleague.justiceleaguetracker.dto;
+package com.comicbook.superhero.team.tracker.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -28,8 +28,11 @@ public class SuperHero implements Serializable {
     @JsonProperty("primaryLocation")
     private String primaryLocation;
 
+    @JsonProperty("publisher")
+    private String publisher;
+
     public SuperHero(@JsonProperty("name") String name, @JsonProperty("power") List<String> superPower,
-                     @JsonProperty("primaryLocation") String primaryLocation) {
+                     @JsonProperty("primaryLocation") String primaryLocation, @JsonProperty("publisher") String publisher) {
         this.name = name;
         this.superPower = superPower;
         this.primaryLocation = primaryLocation;
@@ -45,6 +48,10 @@ public class SuperHero implements Serializable {
 
     public String getPrimaryLocation() {
         return primaryLocation;
+    }
+
+    public String getPublisher() {
+        return publisher;
     }
 
 
